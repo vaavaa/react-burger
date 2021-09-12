@@ -26,8 +26,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 16px;
-    height: 16px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -40,6 +39,3 @@
     border-radius: 6px;
 }
 
-::scrollbar {
-    width: 12px;
-}

@@ -38,11 +38,11 @@ const BurgerIngredients = (props) => {
         const bunsDis = refScrollBuns.current.getBoundingClientRect().top - refScrollContainer.current.getBoundingClientRect().top
         const saucesDis = refScrollSauces.current.getBoundingClientRect().top - refScrollContainer.current.getBoundingClientRect().top
 
-        if (bunsDis >= -215) {
+        if (bunsDis >= -210) {
             setCurrent("start")
             return
         }
-        if (saucesDis >= -490) {
+        if (saucesDis >= -485) {
             setCurrent("second")
         } else {
             setCurrent('third')
@@ -75,7 +75,7 @@ const BurgerIngredients = (props) => {
                     <ul className={style.ul_groups}>
                         {
                             data_buns.map((item, index) => (
-                                <IngredientCard data={item} />
+                                <IngredientCard key={index} data={item} />
                             ))
                         }
                     </ul>
@@ -88,7 +88,7 @@ const BurgerIngredients = (props) => {
                     <ul className={style.ul_groups}>
                         {
                             data_sauces.map((item, index) => (
-                                <IngredientCard data={item} />
+                                <IngredientCard key={index} data={item} />
                             ))
                         }
                     </ul>
@@ -101,7 +101,7 @@ const BurgerIngredients = (props) => {
                     <ul className={style.ul_groups}>
                         {
                             data_mains.map((item, index) => (
-                                <IngredientCard data={item} />
+                                <IngredientCard key={index} data={item} />
                             ))
                         }
                     </ul>
