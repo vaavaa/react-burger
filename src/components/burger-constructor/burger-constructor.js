@@ -1,25 +1,10 @@
 import PropTypes from 'prop-types';
-import style from './burger-constructor.module.css';
-import { ConstructorElement, CurrencyIcon, Button, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './burger-constructor.module.css';
+import { ConstructorElement, CurrencyIcon, Button, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-const ingredientsPropTypes = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    calories: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    image_mobile: PropTypes.string.isRequired,
-    image_large: PropTypes.string.isRequired,
-    _v: PropTypes.number.isRequired,
-});
+const idIngredients = [4,6,7,8,12];
 
-const idIngredients = [6,4,7,8,8,12,6];
-
-const IngredientsElement = ({data}) => (
+const IngedientElement = ({data}) => (
     <span>
     <DragIcon type="primary" />
     <ConstructorElement
@@ -30,26 +15,18 @@ const IngredientsElement = ({data}) => (
   </span>
 )
 
-IngredientsElement.propTypes = {
-    data: ingredientsPropTypes.isRequired,
-};
-
 const Ingredients = ({data}) => (
-    <div className={style.wrapper_ingredients}>
+    <div className={styles.wrapper__ingrediends}>
         {idIngredients.map((item, index) => {
-            return <IngredientsElement key={index} data={data[item]}/>
+            return <IngedientElement key={index} data={data[item]}/>
         })}
     </div>
 );
 
-Ingredients.propTypes = {
-    data: PropTypes.arrayOf(ingredientsPropTypes.isRequired),
-};
-
 export default function BurgerConstructor({data}) {
     return (
-        <div className={style.constructor_content}>
-            <section className={style.constructor_ingredients} >
+        <div className={styles.constructor_content}>
+            <section className={styles.constructor_ingredients} >
         <span className="pl-10 " style={{width:'552px'}}>
           <ConstructorElement
               type="top"
@@ -69,7 +46,7 @@ export default function BurgerConstructor({data}) {
           />
         </span>
             </section>
-            <div className={"mt-10 " + style.constructor_info}>
+            <div className={"mt-10 " + styles.constructor_info}>
                 <span className="text text_type_digits-medium mr-10"><span>1000</span><CurrencyIcon type="primary" /></span>
                 <Button type="primary" size="medium">
                     Оформить заказ
@@ -78,9 +55,3 @@ export default function BurgerConstructor({data}) {
         </div>
     );
 };
-
-BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(
-        ingredientsPropTypes.isRequired
-    )
-}
