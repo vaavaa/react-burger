@@ -9,7 +9,7 @@
 }
 
 .constructor_ingredients{
-    width: 568;
+    width: 568px;
     display: flex;
     flex-direction: column;
     gap: 10px;
