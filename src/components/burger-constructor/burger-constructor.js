@@ -1,28 +1,9 @@
 import style from './burger-constructor.module.css';
-import {Button, ConstructorElement, CurrencyIcon, DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import Ingredients from "./ingredients/ingredients";
 
-const id_ingredients = [4, 6, 8, 6, 7, 8, 12, 13];
 
-const IngredientElement = ({data}) => (
-    <span>
-        <DragIcon type="primary"/>
-        <ConstructorElement
-            text={data.name}
-            price={data.price}
-            thumbnail={data.image}
-        />
-    </span>
-)
-
-const Ingredients = ({data}) => (
-    <div className={style.wrapper_ingredients}>
-        {id_ingredients.map((item, index) => {
-            return <IngredientElement key={index} data={data[item]}/>
-        })}
-    </div>
-);
-
-export default function BurgerConstructor({data}) {
+const BurgerConstructor = (props) =>{
     return (
         <div className={style.constructor_content}>
             <section className={style.constructor_ingredients}>
@@ -30,18 +11,18 @@ export default function BurgerConstructor({data}) {
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={data[3].name + " (верх)"}
-                        price={data[0].price}
-                        thumbnail={data[0].image}/>
+                        text={props.data[3].name}
+                        price={props.data[0].price}
+                        thumbnail={props.data[0].image}/>
                 </span>
-                <Ingredients data={data}/>
+                <Ingredients data={props.data} ids={props.ids}/>
                 <span className="pl-10" style={{width: '552px'}}>
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={data[0].name + " (низ)"}
-                        price={data[0].price}
-                        thumbnail={data[0].image}/>
+                        text={props.data[0].name}
+                        price={props.data[0].price}
+                        thumbnail={props.data[0].image}/>
                 </span>
             </section>
             <div className={"mt-10 " + style.constructor_info}>
@@ -54,3 +35,4 @@ export default function BurgerConstructor({data}) {
         </div>
     );
 };
+export default BurgerConstructor;

@@ -2,6 +2,7 @@ import {React, useRef, useState} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import style from './burger-ingredients.module.css'
 import {IngredientCard} from "./ingredient-card/ingredient-card";
+import {bunsLimit, sauceLimit} from "../../config/config";
 
 
 const BurgerIngredients = (props) => {
@@ -13,62 +14,64 @@ const BurgerIngredients = (props) => {
     let data_mains = props.data.filter((main) => main.type === "main");
 
 
-    const refScrollBuns = useRef(null)
-    const refScrollSauces = useRef(null)
-    const refScrollMains = useRef(null)
-    const refScrollContainer = useRef(null)
+    const refBuns = useRef(null)
+    const refSauces = useRef(null)
+    const refMains = useRef(null)
+    const refContainer = useRef(null)
 
-    const executeScrollBuns = () => {
-        refScrollBuns.current.scrollIntoView()
+    const scrollBuns = () => {
+        refBuns.current.scrollIntoView()
         setCurrent("start")
     }
 
-    const executeScrollSauces = () => {
-        refScrollSauces.current.scrollIntoView()
+    const scrollSauces = () => {
+        refSauces.current.scrollIntoView()
         setCurrent("second")
     }
 
-    const executeScrollMains = () => {
-        refScrollMains.current.scrollIntoView()
+    const scrollMains = () => {
+        refMains.current.scrollIntoView()
         setCurrent('third')
     }
 
 
     const handleScrollIngredients = () => {
-        const bunsDis = refScrollBuns.current.getBoundingClientRect().top - refScrollContainer.current.getBoundingClientRect().top
-        const saucesDis = refScrollSauces.current.getBoundingClientRect().top - refScrollContainer.current.getBoundingClientRect().top
+        const bunsDis = refBuns.current.getBoundingClientRect().top - refContainer.current.getBoundingClientRect().top
+        const saucesDis = refSauces.current.getBoundingClientRect().top - refContainer.current.getBoundingClientRect().top
 
-        if (bunsDis >= -210) {
-            setCurrent("start")
-            return
-        }
-        if (saucesDis >= -485) {
-            setCurrent("second")
-        } else {
-            setCurrent('third')
+        switch (true) {
+            case (bunsDis >= bunsLimit):
+                setCurrent("start")
+                break;
+            case (saucesDis >= sauceLimit):
+                setCurrent("second");
+                break;
+            case (saucesDis < sauceLimit):
+                setCurrent('third')
+                break;
+            default:
         }
     }
 
     return (
-
             <section className={style.burger_content +' pt-10 pb-10'}>
             <h1 className='text text_type_main-large'>Соберите бургер</h1>
             <div style={{display: 'flex'}} className='mt-5'>
-                <Tab value="one" active={current === 'first'} onClick={executeScrollBuns}>
+                <Tab value="one" active={current === 'start'} onClick={scrollBuns}>
                     Булки
                 </Tab>
-                <Tab value="two" active={current === 'second'} onClick={executeScrollSauces}>
+                <Tab value="two" active={current === 'second'} onClick={scrollSauces}>
                     Соусы
                 </Tab>
-                <Tab value="three" active={current === 'third'} onClick={executeScrollMains}>
+                <Tab value="three" active={current === 'third'} onClick={scrollMains}>
                     Начинки
                 </Tab>
             </div>
-            <div ref={refScrollContainer}
+            <div ref={refContainer}
                  className={style.overflow}
                  onScroll={handleScrollIngredients}>
                 <div>
-                    <p ref={refScrollBuns}
+                    <p ref={refBuns}
                        className={style.headers + 'text text_type_main-medium'}>
                         Булки
                     </p>
@@ -81,7 +84,7 @@ const BurgerIngredients = (props) => {
                     </ul>
                 </div>
                 <div>
-                    <p ref={refScrollSauces}
+                    <p ref={refSauces}
                        className={style.headers + 'text text_type_main-medium'}>
                         Соусы
                     </p>
@@ -94,7 +97,7 @@ const BurgerIngredients = (props) => {
                     </ul>
                 </div>
                 <div>
-                    <p ref={refScrollMains}
+                    <p ref={refMains}
                        className={style.headers + 'text text_type_main-medium'}>
                         Начинки
                     </p>

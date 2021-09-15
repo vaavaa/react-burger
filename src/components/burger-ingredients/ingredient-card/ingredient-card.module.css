@@ -1,13 +1,23 @@
-.card {
-    width: 190px;
-    margin: 5px;
-    display: flex;
-}
-
-.card .img {
+.img {
     width: 270px;
 }
-
-.card p {
+.caption {
     text-align: center;
+    overflow-wrap: break-word;
+}
+
+.price {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    padding-right: 30px;
+    margin: auto;
+}
+.price span {
+    margin: 0 10px;
+}
+
+.card {
+    max-width: 300px;
 }
