@@ -11,7 +11,7 @@
     flex-direction:row;
     align-items: center;
     justify-content: center;
-    padding-right: 30px;
+    padding-right: 20px;
     margin: auto;
 }
 .price span {
@@ -19,5 +19,5 @@
 }
 
 .card {
-    max-width: 300px;
+    max-width: 290px;
 }

@@ -4,9 +4,9 @@ import Ingredients from "./ingredients/ingredients";
 
 
 const BurgerConstructor = (props) =>{
-    const text = "Краторная булка N-200i";
-    const price = 1255;
-    const bun_image = props.data[0].image;
+    const text = props.data[props.buns].name;
+    const price = props.data[props.buns].price;
+    const bun_image = props.data[props.buns].image;
 
     return (
         <div className={style.constructor_content}>

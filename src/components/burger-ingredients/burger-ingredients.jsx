@@ -2,7 +2,7 @@ import {React, useRef, useState} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import style from './burger-ingredients.module.css'
 import {IngredientCard} from "./ingredient-card/ingredient-card";
-import {bunsLimit, sauceLimit} from "../../config/config";
+import {bunsLimit, sauceLimit} from "../../utils/config";
 
 
 const BurgerIngredients = (props) => {
