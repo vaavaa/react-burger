@@ -4,25 +4,29 @@ import Ingredients from "./ingredients/ingredients";
 
 
 const BurgerConstructor = (props) =>{
+    const text = "Краторная булка N-200i";
+    const price = 1255;
+    const bun_image = props.data[0].image;
+
     return (
         <div className={style.constructor_content}>
             <section className={style.constructor_ingredients}>
-                <span className="pl-10 " style={{width: '552px'}}>
+                <span className={style.top_bottom_buns + ' pl-10 '} >
                     <ConstructorElement
                         type="top"
                         isLocked={true}
-                        text={props.data[3].name}
-                        price={props.data[0].price}
-                        thumbnail={props.data[0].image}/>
+                        text={text+'(верх)'}
+                        price={price}
+                        thumbnail={bun_image}/>
                 </span>
                 <Ingredients data={props.data} ids={props.ids}/>
-                <span className="pl-10" style={{width: '552px'}}>
+                <span className={style.top_bottom_buns + ' pl-10 '} >
                     <ConstructorElement
                         type="bottom"
                         isLocked={true}
-                        text={props.data[0].name}
-                        price={props.data[0].price}
-                        thumbnail={props.data[0].image}/>
+                        text={text+'(низ)'}
+                        price={price}
+                        thumbnail={bun_image}/>
                 </span>
             </section>
             <div className={"mt-10 " + style.constructor_info}>

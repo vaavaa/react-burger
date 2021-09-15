@@ -19,7 +19,9 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.top_bottom_buns {
+    width: 530px;
+}
 .constructor_info{
     width:568px;
     display: flex;
