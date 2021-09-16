@@ -1,11 +1,12 @@
 import style from "./ingredient-card.module.css";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
+import {ingredient_model} from "../../../models/common_models";
 
-export const IngredientCard = (props) => {
-    var counter = 0;
+const IngredientCard = (props) => {
+    let counter = 0;
     return (
-        <div className={style.card}>
-            <div style={{position: 'relative'}}>
+        <div className={style.card} onClick={props.onOpen} id={props.data._id}>
+            <div className={style.counter}>
                 {
                     counter !== 0 ? <Counter count={counter} size="default"/> : ""
                 }
@@ -23,3 +24,6 @@ export const IngredientCard = (props) => {
         </div>
     )
 }
+
+// IngredientCard.propTypes = ingredient_model.isRequired;
+export default IngredientCard

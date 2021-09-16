@@ -1,6 +1,7 @@
 .img {
     width: 270px;
 }
+
 .caption {
     text-align: center;
     overflow-wrap: break-word;
@@ -8,16 +9,21 @@
 
 .price {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-right: 20px;
     margin: auto;
 }
+
 .price span {
     margin: 0 10px;
 }
 
 .card {
     max-width: 290px;
+}
+
+.counter {
+    position: relative;
 }
