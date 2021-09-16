@@ -59,10 +59,10 @@ const BurgerIngredients = (props) => {
         }
     }
 
-    function handleClose() {
+    const handleClose =() => {
         setModal(false);
     }
-    function handleOpen(e) {
+    const handleOpen = (e) => {
         const target = e.currentTarget;
         const id = target.getAttribute('id');
         setModalData(props.data.find((item) => item._id === id));

@@ -48,7 +48,7 @@ const BurgerConstructor = (props) =>{
             </div>
             {modal &&
             <Modal onClose={handleOpen}>
-                <OrderDetails />
+                <OrderDetails data={props.ids} />
             </Modal>
             }
         </div>

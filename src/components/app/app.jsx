@@ -4,9 +4,10 @@ import {API_URL, BUNS, IDS} from "../../utils/config";
 import React from "react";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-constructor/burger-constructor";
+import ErrorBoundary from "../error-boundary/error-boundary";
 
 
-function App() {
+const App = () => {
     const [state, setState] = React.useState({isLoading: false, hasError: false, data: []})
     React.useEffect(() => {
         const getApiData = async () => {
@@ -36,7 +37,7 @@ function App() {
     return (
         <div className={style.wrapper}>
             {/*Надо на продакшен оставлять такой обработчик ошибок*/}
-            {/*<ErrorBoundary>*/}
+            <ErrorBoundary>
             <Header/>
             <div className={style.container}>
                 {state.isLoading && 'Загрузка...'}
@@ -49,7 +50,7 @@ function App() {
                     <BurgerConstructor data={state.data} ids={IDS} buns={BUNS}/>
                 </main>}
             </div>
-            {/*</ErrorBoundary>*/}
+            </ErrorBoundary>
         </div>
     );
 }

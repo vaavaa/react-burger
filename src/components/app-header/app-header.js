@@ -1,6 +1,6 @@
 import style from './app-header.module.css';
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-export default function Header() {
+const Header = () => {
     return (
         <header className={style.header}>
             <div className={style.container +' pt-4 pb-4 '+ style.header_content}>
@@ -26,3 +26,4 @@ export default function Header() {
             </div>
         </header>);
 };
+export default Header;
