@@ -25,5 +25,5 @@ const IngredientCard = (props) => {
     )
 }
 
-// IngredientCard.propTypes = ingredient_model.isRequired;
+IngredientCard.propTypes = ingredient_model.isRequired;
 export default IngredientCard

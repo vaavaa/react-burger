@@ -23,7 +23,7 @@ const Modal = (props) => {
     return ReactDOM.createPortal(
         <>
             <ModalOverlay onClose={onClose} />
-            <section className={style.modal+' pt-10 pr-10 pl-10 pb-15'}>
+            <section className={style.modal_view+' pt-10 pr-10 pl-10 pb-15'}>
                 <section className={style.header}>
                     <h3 className={style.caption +' text text_type_main-large'}>{caption}</h3>
                     <div className={style.close} onClick={onClose}>

@@ -128,7 +128,7 @@ const BurgerIngredients = (props) => {
             </div>
             {modal &&
             modalData &&
-            (<Modal onClose={handleClose} title={'Ингредиенты'}>
+            (<Modal onClose={handleClose} caption={'Детали ингредиента'}>
                     <IngredientDetails data={modalData}/>
              </Modal>)
             }

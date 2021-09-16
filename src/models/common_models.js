@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+//BurgerIngredients, BurgerConstructor
 export const ingredients_model = PropTypes.shape({
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
