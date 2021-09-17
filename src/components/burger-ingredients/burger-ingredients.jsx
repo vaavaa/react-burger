@@ -93,8 +93,8 @@ const BurgerIngredients = (props) => {
                     </p>
                     <ul className={style.ul_groups}>
                         {
-                            data_buns.map((item, index) => (
-                                <IngredientCard key={index} data={item} onOpen={handleOpen}/>
+                            data_buns.map((item) => (
+                                <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                             ))
                         }
                     </ul>
@@ -106,8 +106,8 @@ const BurgerIngredients = (props) => {
                     </p>
                     <ul className={style.ul_groups}>
                         {
-                            data_sauces.map((item, index) => (
-                                <IngredientCard key={index} data={item} onOpen={handleOpen}/>
+                            data_sauces.map((item) => (
+                                <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                             ))
                         }
                     </ul>
@@ -119,8 +119,8 @@ const BurgerIngredients = (props) => {
                     </p>
                     <ul className={style.ul_groups}>
                         {
-                            data_mains.map((item, index) => (
-                                <IngredientCard key={index} data={item} onOpen={handleOpen}/>
+                            data_mains.map((item) => (
+                                <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                             ))
                         }
                     </ul>

@@ -14,6 +14,6 @@ const Ingredients = (props) => (
 
 Ingredients.propTypes = {
     data: PropTypes.arrayOf(ingredients_model.isRequired).isRequired,
-    ids: PropTypes.arrayOf(PropTypes.isRequired).isRequired
+    ids: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 }
 export default Ingredients;
