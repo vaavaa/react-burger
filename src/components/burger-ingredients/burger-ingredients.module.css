@@ -1,0 +1,38 @@
+.overflow {
+    overflow: auto;
+    height: 700px;
+    display: block;
+}
+
+.burger_content{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.headers {
+    padding: 30px 0;
+}
+
+.ul_groups {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border: 3px solid #2F2F37;
+    border-radius: 6px;
+}
