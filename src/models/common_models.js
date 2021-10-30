@@ -34,3 +34,12 @@ export const ingredient_model = PropTypes.shape({
     _id: PropTypes.string.isRequired,
     onOpen: PropTypes.func.isRequired
 });
+
+//BurgerConstructorItem component
+export const ingredient_element_modal = PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    uuid: PropTypes.string.isRequired,
+})

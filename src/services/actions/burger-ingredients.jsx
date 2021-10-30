@@ -1,4 +1,3 @@
-
 import {getData} from "../../utils/server";
 import {API_URL} from "../../utils/config";
 
@@ -7,8 +6,9 @@ export const INGREDIENTS_SUCCESS = 'INGREDIENTS_SUCCESS';
 export const INGREDIENTS_FAILED = 'INGREDIENTS_FAILED';
 export const INGREDIENT_MODAL = 'INGREDIENT_MODAL';
 export const INGREDIENT_MODAL_REMOVE = 'INGREDIENT_MODAL_REMOVE';
+export const INGREDIENT_ACTIVATE_TAB = 'INGREDIENT_ACTIVATE_TAB';
 
-export const getIngredients = () => {
+export const getIngredientsFromServer = () => {
     return function (dispatch) {
         dispatch({
             type: INGREDIENTS_REQUEST

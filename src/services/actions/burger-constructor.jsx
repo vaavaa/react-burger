@@ -6,6 +6,8 @@ export const ORDER_REQUEST = 'ORDER_REQUEST';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILED = 'ORDER_FAILED';
 export const ORDER_CLEARED = 'ORDER_CLEARED';
+export const MODAL_CLOSED = 'MODAL_CLOSED';
+export const MODAL_OPENED = 'MODAL_OPENED';
 
 export const CONSTRUCTOR_ADD_INGREDIENT = 'CONSTRUCTOR_ADD_INGREDIENT';
 export const CONSTRUCTOR_REMOVE_INGREDIENT = 'CONSTRUCTOR_REMOVE_INGREDIENT';
@@ -13,10 +15,14 @@ export const CONSTRUCTOR_ADD_BUN = 'CONSTRUCTOR_ADD_BUN';
 export const CONSTRUCTOR_MOVE_INGREDIENT = 'CONSTRUCTOR_MOVE_INGREDIENT';
 export const CONSTRUCTOR_CLEARED = 'CONSTRUCTOR_CLEARED';
 
-export const postOrder = (idsArr) => {
+
+export const postOrderToServer = (ids) => {
     return function (dispatch) {
         dispatch({
             type: ORDER_REQUEST
+        })
+        dispatch({
+            type: MODAL_OPENED
         })
         setData({
             url: POST_URL,
@@ -24,7 +30,7 @@ export const postOrder = (idsArr) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: {ingredients: idsArr}
+            body: {ingredients: ids}
         })
             .then((res) => {
                 if (res.ok) {
@@ -48,10 +54,7 @@ export const postOrder = (idsArr) => {
             .catch(err => {
                 console.log(err)
                 dispatch({
-                    type: ORDER_FAILED
-                })
-                dispatch({
-                    type: ORDER_CLEARED
+                    type: MODAL_CLOSED
                 })
             })
     }

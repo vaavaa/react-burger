@@ -1,4 +1,5 @@
 import {
+    INGREDIENT_ACTIVATE_TAB,
     INGREDIENT_MODAL,
     INGREDIENT_MODAL_REMOVE,
     INGREDIENTS_FAILED,
@@ -10,7 +11,9 @@ const initialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
-    ingredientDetails: {}
+    ingredientDetails: {},
+    currentTab: "bun",
+    modalBit: false
 };
 
 export const burgerIngredientsReducer = (state = initialState, action) => {
@@ -30,13 +33,21 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
         case INGREDIENT_MODAL: {
             return {
                 ...state,
-                ingredientDetails: action.item
+                ingredientDetails: action.item,
+                modalBit: true
             }
         }
         case INGREDIENT_MODAL_REMOVE: {
             return {
                 ...state,
-                ingredientDetails: {}
+                ingredientDetails: {},
+                modalBit: false
+            }
+        }
+        case INGREDIENT_ACTIVATE_TAB: {
+            return {
+                ...state,
+                currentTab: action.item
             }
         }
         default:

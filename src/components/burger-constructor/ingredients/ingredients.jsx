@@ -6,14 +6,13 @@ import {ingredients_model} from "../../../models/common_models";
 
 const Ingredients = (props) => (
     <div className={style.wrapper_ingredients}>
-        {props.ids.map((item, index) => {
-            return <IngredientElement key={index} data={props.data[item]}/>
+        {props.data.map((item, index) => {
+            return <IngredientElement key={item.uuid} index={index} {...item} />
         })}
     </div>
 );
 
 Ingredients.propTypes = {
     data: PropTypes.arrayOf(ingredients_model.isRequired).isRequired,
-    ids: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 }
 export default Ingredients;

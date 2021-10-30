@@ -3,7 +3,7 @@ import {
     CONSTRUCTOR_ADD_INGREDIENT,
     CONSTRUCTOR_CLEARED,
     CONSTRUCTOR_MOVE_INGREDIENT,
-    CONSTRUCTOR_REMOVE_INGREDIENT,
+    CONSTRUCTOR_REMOVE_INGREDIENT, MODAL_CLOSED, MODAL_OPENED,
     ORDER_CLEARED,
     ORDER_FAILED,
     ORDER_REQUEST,
@@ -18,7 +18,8 @@ const initialState = {
     ingredients: [],
     bun: null,
 
-    totalPrice: 0
+    totalPrice: 0,
+    modalBit: false
 }
 
 export const constructorReducer = (state = initialState, action) => {
@@ -74,6 +75,19 @@ export const constructorReducer = (state = initialState, action) => {
                 ...state,
                 ingredients: [],
                 bun: null
+            }
+        case MODAL_CLOSED:
+            return {
+                ...state,
+                order: null,
+                ingredients: [],
+                bun: null,
+                modalBit: false
+            }
+        case MODAL_OPENED:
+            return {
+                ...state,
+                modalBit: true
             }
         default:
             return state;
