@@ -8,7 +8,9 @@ import ErrorBoundary from "../error-boundary/error-boundary";
 
 
 const App = () => {
+
     const [state, setState] = React.useState({isLoading: false, hasError: false, data: []})
+
     React.useEffect(() => {
         const getApiData = async () => {
             setState(prevState => ({...prevState, data: prevState.data}));
