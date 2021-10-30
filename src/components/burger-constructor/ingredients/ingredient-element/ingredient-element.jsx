@@ -37,7 +37,7 @@ const IngredientElement = (props) => {
             isDragging: monitor.isDragging(),
         }),
     });
-    const opacity = isDragging ? 0.5 : 1;
+    const opacity = isDragging ? 0 : 1;
 
     const [, drop] = useDrop({
         accept: 'sortable',
@@ -69,15 +69,15 @@ const IngredientElement = (props) => {
 
     return (
         <span id={_id} style={{opacity: opacity}} ref={item_ref}>
-        <div style={{cursor: 'pointer'}}>
-            <DragIcon type="primary"/>
-        </div>
-        <ConstructorElement
-            text={name}
-            price={price}
-            thumbnail={image}
-            handleClose={handleRemove}/>
-    </span>
+            <div style={{cursor: 'pointer'}}>
+                <DragIcon type="primary"/>
+            </div>
+            <ConstructorElement
+                text={name}
+                price={price}
+                thumbnail={image}
+                handleClose={handleRemove}/>
+        </span>
     )
 }
 

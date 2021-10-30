@@ -54,7 +54,10 @@ export const postOrderToServer = (ids) => {
             .catch(err => {
                 console.log(err)
                 dispatch({
-                    type: MODAL_CLOSED
+                    type: ORDER_FAILED
+                })
+                dispatch({
+                    type: ORDER_CLEARED
                 })
             })
     }

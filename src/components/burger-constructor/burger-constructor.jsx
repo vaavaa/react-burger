@@ -15,7 +15,6 @@ import {v4 as uuidv4} from 'uuid';
 import {useMemo} from "react";
 
 const BurgerConstructor = () => {
-
     const {ingredients, bun, order, modalBit} = useSelector(state => ({
         ingredients: state.burgerConstructor.ingredients,
         bun: state.burgerConstructor.bun,
@@ -26,25 +25,51 @@ const BurgerConstructor = () => {
 
     const moveIngredient = (ingredient) => {
         dispatch({
-            type: ingredient.type === 'bun' ? CONSTRUCTOR_ADD_BUN : CONSTRUCTOR_ADD_INGREDIENT,
+            type: CONSTRUCTOR_ADD_INGREDIENT,
             item: {...ingredient, uuid: uuidv4()}
         })
     }
-    const [{isHover}, dropTarget] = useDrop({
+    const moveBuns = (buns) => {
+        dispatch({
+            type: CONSTRUCTOR_ADD_BUN,
+            item: buns
+        })
+    }
+
+    const [{isHoverIngredients}, dropIngredients] = useDrop({
         accept: 'ingredients',
         collect: monitor => ({
-            isHover: monitor.isOver()
+            isHoverIngredients: monitor.isOver()
         }),
         drop(item) {
             moveIngredient(item);
         }
     });
 
+    const [{isHoverBunsTop}, dropBunTop] = useDrop({
+        accept: 'buns',
+        collect: monitor => ({
+            isHoverBunsTop: monitor.isOver()
+        }),
+        drop(item) {
+            moveBuns(item);
+        }
+    });
+    const [{isHoverBunsBottom}, dropBunBottom] = useDrop({
+        accept: 'buns',
+        collect: monitor => ({
+            isHoverBunsBottom: monitor.isOver()
+        }),
+        drop(item) {
+            moveBuns(item);
+        }
+    });
+
     const totalPrice = useMemo(() => {
         let price = ingredients.reduce((acc, item) => {
-            return item.price + acc;
+            return item.data.price + acc;
         }, 0);
-        price += bun && bun.price * 2;
+        price += bun && bun.data.price * 2;
         return price;
     }, [ingredients, bun])
 
@@ -63,13 +88,14 @@ const BurgerConstructor = () => {
 
     return (
         <div className={style.constructor_content}>
-            <section ref={dropTarget} className={style.constructor_ingredients}>
-                <span className={`${style.top_bottom_buns} pl-10 ${isHover ? style.is_hovering : ''}`}>
+            <section className={style.constructor_ingredients}>
+                <span ref={dropBunTop}
+                      className={`${style.top_bottom_buns} pl-10 ${isHoverBunsTop ? style.is_hovering : ''}`}>
                    {bun ? (
                        <ConstructorElement
-                           text={`${bun.name} (сверху)`}
-                           price={bun.price}
-                           thumbnail={bun.image}
+                           text={`${bun.data.name} (сверху)`}
+                           price={bun.data.price}
+                           thumbnail={bun.data.image}
                            type="top"
                            isLocked={true}
                        />
@@ -79,13 +105,14 @@ const BurgerConstructor = () => {
                        </div>
                    )}
                 </span>
-                <Ingredients data={ingredients}/>
-                <span className={`${style.top_bottom_buns} pl-10 ${isHover ? style.is_hovering : ''}`}>
+                <Ingredients ref={dropIngredients} data={ingredients} is_hover={isHoverIngredients}/>
+                <span ref={dropBunBottom}
+                      className={`${style.top_bottom_buns} pl-10 ${isHoverBunsBottom ? style.is_hovering : ''}`}>
                    {bun ? (
                        <ConstructorElement
-                           text={`${bun.name} (снизу)`}
-                           price={bun.price}
-                           thumbnail={bun.image}
+                           text={`${bun.data.name} (снизу)`}
+                           price={bun.data.price}
+                           thumbnail={bun.data.image}
                            type="bottom"
                            isLocked={true}
                        />
@@ -105,11 +132,10 @@ const BurgerConstructor = () => {
                         Оформить заказ
                     </Button>
                 </div>)}
-            {modalBit &&
-            <Modal onClose={handleClose}>
-                <OrderDetails data={order}/>
-            </Modal>
-            }
+            {modalBit && order && (
+                <Modal onClose={handleClose}>
+                    <OrderDetails data={order}/>
+                </Modal>)}
         </div>
     );
 };

@@ -10,6 +10,9 @@
     margin-left: 16px;
 }
 
+.is_hovering {
+    border: 1px solid red;
+}
 .constructor_ingredients span div {
     margin-right: 8px;
     margin-left: 8px;
