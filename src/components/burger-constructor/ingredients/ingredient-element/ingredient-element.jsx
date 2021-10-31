@@ -9,8 +9,11 @@ import {
 } from "../../../../services/actions/burger-constructor";
 
 const IngredientElement = (props) => {
-    const {_id, name, price, image, uuid} = props.data;
+    const uuid = props.data.uuid;
+    const {_id, name, price, image} = props.data.data;
     const index = props.index;
+
+    console.log(props.data);
 
     const dispatch = useDispatch();
     const item_ref = useRef(null);
@@ -18,7 +21,7 @@ const IngredientElement = (props) => {
     const handleRemove = () => {
         dispatch({
             type: CONSTRUCTOR_REMOVE_INGREDIENT,
-            id: uuid
+            uuid: uuid
         })
     }
 

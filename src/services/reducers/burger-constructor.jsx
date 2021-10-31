@@ -52,9 +52,7 @@ export const constructorReducer = (state = initialState, action) => {
         case CONSTRUCTOR_REMOVE_INGREDIENT:
             return {
                 ...state,
-                ingredients: [
-                    ...state.ingredients.filter((item) => item.uuid !== action.id)
-                ],
+                ingredients: [...state.ingredients.filter(item => item.uuid !== action.uuid)],
             }
         case CONSTRUCTOR_ADD_BUN:
             return {
