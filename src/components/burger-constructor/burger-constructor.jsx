@@ -15,6 +15,7 @@ import {v4 as uuidv4} from 'uuid';
 import {useMemo} from "react";
 
 const BurgerConstructor = () => {
+    //Стейты перебрались в redux
     const {ingredients, bun, order, modalBit} = useSelector(state => ({
         ingredients: state.burgerConstructor.ingredients,
         bun: state.burgerConstructor.bun,
@@ -77,8 +78,6 @@ const BurgerConstructor = () => {
         if (!bun) return alert('Выберите булочку сначала. Без булочки не бывает бургеров.');
         //Булочку укажем два раза потому что булочка у нас двойная
         const ids = [...ingredients.map(item => item.data._id), bun.data._id, bun.data._id];
-
-        console.log(ids);
         //Отправляем данные на сервер
         dispatch(postOrderToServer(ids));
     }

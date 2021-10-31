@@ -9,7 +9,9 @@ import {
 } from "../../../../services/actions/burger-constructor";
 
 const IngredientElement = (props) => {
-    const {_id, name, price, image, uuid, index} = props.data;
+    const {_id, name, price, image, uuid} = props.data;
+    const index = props.index;
+
     const dispatch = useDispatch();
     const item_ref = useRef(null);
 
@@ -45,6 +47,7 @@ const IngredientElement = (props) => {
             if (!item_ref.current) {
                 return;
             }
+            console.log(index);
             const dragIndex = item.index;
             const hoverIndex = index;
             if (dragIndex === hoverIndex) {
