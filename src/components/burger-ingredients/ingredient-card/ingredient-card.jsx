@@ -6,11 +6,13 @@ import {useDrag} from "react-dnd";
 
 const IngredientCard = (props) => {
     const {ingredients, bun} = useSelector(state => state.burgerConstructor);
-    const {image, price, name, _id, onOpen, type} = props.data;
-    let counter = ingredients.filter((item) => item._id === _id).length;
+    const {image, price, name, _id, type} = props.data;
+    let counter = ingredients.filter((item) => item.data._id === _id).length;
     let counter_ux = '';
 
-    if (type === 'bun' && bun && bun._id === _id) {
+    if (type === 'bun'
+        && bun
+        && bun.data._id === _id) {
         counter_ux = 2;
     } else if (type !== 'bun' && counter) {
         counter_ux = counter
@@ -25,8 +27,9 @@ const IngredientCard = (props) => {
             opacity: monitor.isDragging() ? 0.5 : 1
         })
     })
+
     return (
-        <div ref={ref_ingredient} draggable className={style.card} style={{opacity: opacity}} onClick={onOpen} id={_id}>
+        <div ref={ref_ingredient} draggable className={style.card} style={{opacity: opacity}} onClick={props.onOpen} id={_id}>
             <div className={style.counter}>
                 {counter_ux && <Counter count={counter_ux} size="default"/>}
             </div>

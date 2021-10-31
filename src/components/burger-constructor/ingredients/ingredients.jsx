@@ -6,11 +6,11 @@ import React from "react";
 
 
 const Ingredients = React.forwardRef((props, ref) => (
-    <dev ref={ref} className={`${style.wrapper_ingredients} ${props.is_hover ? style.is_hovering : ''}`}>
+    <div ref={ref} className={`${style.wrapper_ingredients} ${props.is_hover ? style.is_hovering : ''}`}>
         {props.data.map((item, index) => {
             return <IngredientElement key={item.uuid} index={index} {...item} />
         })}
-    </dev>
+    </div>
 ));
 
 Ingredients.propTypes = {
