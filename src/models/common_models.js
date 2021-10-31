@@ -43,3 +43,7 @@ export const ingredient_element_modal = PropTypes.shape({
     _id: PropTypes.string.isRequired,
     uuid: PropTypes.string.isRequired,
 })
+
+export const order_details_modal = PropTypes.shape({
+    id: PropTypes.number.isRequired
+})

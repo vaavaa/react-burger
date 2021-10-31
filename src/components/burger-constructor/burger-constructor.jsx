@@ -76,7 +76,9 @@ const BurgerConstructor = () => {
     const handleOpen = () => {
         if (!bun) return alert('Выберите булочку сначала. Без булочки не бывает бургеров.');
         //Булочку укажем два раза потому что булочка у нас двойная
-        const ids = [...ingredients.map(item => item._id), bun._id, bun._id];
+        const ids = [...ingredients.map(item => item.data._id), bun.data._id, bun.data._id];
+
+        console.log(ids);
         //Отправляем данные на сервер
         dispatch(postOrderToServer(ids));
     }
@@ -134,7 +136,7 @@ const BurgerConstructor = () => {
                 </div>)}
             {modalBit && order && (
                 <Modal onClose={handleClose}>
-                    <OrderDetails data={order}/>
+                    <OrderDetails id={order}/>
                 </Modal>)}
         </div>
     );
