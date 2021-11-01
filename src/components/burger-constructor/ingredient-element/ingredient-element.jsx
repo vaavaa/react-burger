@@ -1,19 +1,17 @@
 import React, {useRef} from 'react';
 import {useDispatch} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
-import {ingredient_element_modal} from "../../../../models/common_models";
+import {ingredient_element_modal} from "../../../models/common_models";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {
     CONSTRUCTOR_MOVE_INGREDIENT,
     CONSTRUCTOR_REMOVE_INGREDIENT
-} from "../../../../services/actions/burger-constructor";
+} from "../../../services/actions/burger-constructor";
 
 const IngredientElement = (props) => {
     const uuid = props.data.uuid;
     const {_id, name, price, image} = props.data.data;
     const index = props.index;
-
-    console.log(props.data);
 
     const dispatch = useDispatch();
     const item_ref = useRef(null);
@@ -50,7 +48,6 @@ const IngredientElement = (props) => {
             if (!item_ref.current) {
                 return;
             }
-            console.log(index);
             const dragIndex = item.index;
             const hoverIndex = index;
             if (dragIndex === hoverIndex) {

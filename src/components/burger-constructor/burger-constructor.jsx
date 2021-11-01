@@ -1,6 +1,5 @@
 import style from './burger-constructor.module.css';
 import {Button, ConstructorElement, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import Ingredients from "./ingredients/ingredients";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,7 +11,8 @@ import {
 } from "../../services/actions/burger-constructor";
 import {useDrop} from "react-dnd";
 import {v4 as uuidv4} from 'uuid';
-import {useMemo} from "react";
+import React, {useMemo} from "react";
+import IngredientElement from "./ingredient-element/ingredient-element";
 
 const BurgerConstructor = () => {
     //Стейты перебрались в redux
@@ -86,7 +86,6 @@ const BurgerConstructor = () => {
             type: MODAL_CLOSED
         })
     }
-
     return (
         <div className={style.constructor_content}>
             <section className={style.constructor_ingredients}>
@@ -106,7 +105,17 @@ const BurgerConstructor = () => {
                        </div>
                    )}
                 </span>
-                <Ingredients ref={dropIngredients} data={ingredients} is_hover={isHoverIngredients}/>
+                <div ref={dropIngredients}
+                     className={`${style.wrapper_ingredients} ${isHoverIngredients ? style.is_hovering : ''}`}>
+                    {ingredients.length > 0 ? (
+                            ingredients.map((item, index) => {
+                                return <IngredientElement key={item.uuid} index={index} data={item}/>
+                            })
+                        ) :
+                        (
+                            <p>Выберите ингредиенты</p>
+                        )}
+                </div>
                 <span ref={dropBunBottom}
                       className={`${style.top_bottom_buns} pl-10 ${isHoverBunsBottom ? style.is_hovering : ''}`}>
                    {bun ? (
