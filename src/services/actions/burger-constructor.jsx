@@ -56,9 +56,6 @@ export const postOrderToServer = (ids) => {
                 dispatch({
                     type: ORDER_FAILED
                 })
-                dispatch({
-                    type: ORDER_CLEARED
-                })
             })
     }
 }

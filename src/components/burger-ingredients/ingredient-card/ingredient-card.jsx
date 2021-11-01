@@ -1,6 +1,6 @@
 import style from "./ingredient-card.module.css";
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components'
-import {ingredient_model} from "../../../models/common_models";
+import {ingredientModel} from "../../../models/common-models";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 
@@ -8,19 +8,19 @@ const IngredientCard = (props) => {
     const {ingredients, bun} = useSelector(state => state.burgerConstructor);
     const {image, price, name, _id, type} = props.data;
     let counter = ingredients.filter((item) => item.data._id === _id).length;
-    let counter_ux = '';
+    let counterUx;
 
     if (type === 'bun'
         && bun
         && bun.data._id === _id) {
-        counter_ux = 2;
+        counterUx = 2;
     } else if (type !== 'bun' && counter) {
-        counter_ux = counter
+        counterUx = counter
     } else {
-        counter_ux = '';
+        counterUx = '';
     }
 
-    const [{opacity}, ref_ingredient] = useDrag({
+    const [{opacity}, refIngredient] = useDrag({
         type: type === 'bun' ? 'buns' : 'ingredients',
         item: {...props},
         collect: monitor => ({
@@ -29,9 +29,9 @@ const IngredientCard = (props) => {
     })
 
     return (
-        <div ref={ref_ingredient} draggable className={style.card} style={{opacity: opacity}} onClick={props.onOpen} id={_id}>
+        <div ref={refIngredient} draggable className={style.card} style={{opacity: opacity}} onClick={props.onOpen} id={_id}>
             <div className={style.counter}>
-                {counter_ux && <Counter count={counter_ux} size="default"/>}
+                {counterUx && <Counter count={counterUx} size="default"/>}
             </div>
             <img className={style.img} src={image} alt="burger"/>
             <div className={style.price}>
@@ -47,5 +47,5 @@ const IngredientCard = (props) => {
     )
 }
 
-IngredientCard.propTypes = ingredient_model.isRequired;
+IngredientCard.propTypes = ingredientModel.isRequired;
 export default IngredientCard

@@ -111,10 +111,7 @@ const BurgerConstructor = () => {
                             ingredients.map((item, index) => {
                                 return <IngredientElement key={item.uuid} index={index} data={item}/>
                             })
-                        ) :
-                        (
-                            <p>Выберите ингредиенты</p>
-                        )}
+                        ) : ( <p>Выберите ингредиенты</p> )}
                 </div>
                 <span ref={dropBunBottom}
                       className={`${style.top_bottom_buns} pl-10 ${isHoverBunsBottom ? style.is_hovering : ''}`}>

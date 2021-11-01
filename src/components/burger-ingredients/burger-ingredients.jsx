@@ -32,9 +32,9 @@ const BurgerIngredients = () => {
     }, [dispatch]);
 
     //Что бы не перегружать разметку выборкой, здесь фильтруем
-    const data_buns = ingredients.filter((buns) => buns.type === "bun");
-    const data_sauces = ingredients.filter((sauce) => sauce.type === "sauce");
-    const data_mains = ingredients.filter((main) => main.type === "main");
+    const dataBuns = ingredients.filter((buns) => buns.type === "bun");
+    const dataSauces = ingredients.filter((sauce) => sauce.type === "sauce");
+    const dataMains = ingredients.filter((main) => main.type === "main");
 
     //Обработка нажатий на табы
     const scrollBuns = () => {
@@ -66,10 +66,10 @@ const BurgerIngredients = () => {
             default:
         }
     }
-    const handleTab = (tab_name) => {
+    const handleTab = (tabName) => {
         dispatch({
             type: INGREDIENT_ACTIVATE_TAB,
-            item: tab_name
+            item: tabName
         })
     }
 
@@ -115,7 +115,7 @@ const BurgerIngredients = () => {
                             </p>
                             <ul className={style.ul_groups}>
                                 {
-                                    data_buns.map((item) => (
+                                    dataBuns.map((item) => (
                                         <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                                     ))
                                 }
@@ -128,7 +128,7 @@ const BurgerIngredients = () => {
                             </p>
                             <ul className={style.ul_groups}>
                                 {
-                                    data_sauces.map((item) => (
+                                    dataSauces.map((item) => (
                                         <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                                     ))
                                 }
@@ -141,7 +141,7 @@ const BurgerIngredients = () => {
                             </p>
                             <ul className={style.ul_groups}>
                                 {
-                                    data_mains.map((item) => (
+                                    dataMains.map((item) => (
                                         <IngredientCard key={item._id} data={item} onOpen={handleOpen}/>
                                     ))
                                 }
