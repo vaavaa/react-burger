@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './ingredient-detail.module.css';
-import {ingredient_details_model} from "../../../models/common_models";
+import {ingredientDetailsModel} from "../../../models/common-models";
 
 const IngredientDetails = (props) => {
     return (
@@ -29,5 +29,5 @@ const IngredientDetails = (props) => {
     )
 }
 
-IngredientDetails.propTypes = ingredient_details_model.isRequired;
+IngredientDetails.propTypes = ingredientDetailsModel.isRequired;
 export default  IngredientDetails;

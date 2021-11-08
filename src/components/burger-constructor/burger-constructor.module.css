@@ -29,3 +29,32 @@
     align-items: center;
 }
 
+.bun_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed grey;
+    width: 568px;
+    padding: 16px 24px;
+}
+
+
+
+.is_hovering {
+    border: 1px solid red;
+}
+
+.wrapper_ingredients{
+    height: 440px;
+    margin-right: -16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-left: 16px;
+}
+.ingredients_empty {
+    border: 1px dashed grey;
+}
