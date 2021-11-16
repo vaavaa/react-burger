@@ -1,0 +1,24 @@
+.wrapper {
+    background-image: url("src/images/not-found/space_1.jpg");
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: bottom;
+    background-position-x: -25vw;
+    background-repeat: no-repeat;
+}
+
+.container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20px * 2);
+}
+
+.content {
+    margin: auto;
+}
+
+.link {
+    color: #9394ff;
+}

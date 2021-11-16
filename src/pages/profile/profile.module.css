@@ -1,0 +1,9 @@
+.profile_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.profile_content {
+    width: 100%;
+}

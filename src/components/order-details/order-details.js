@@ -2,7 +2,7 @@ import React from 'react';
 import style from './order-details.module.css';
 import {CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import done from '../../images/order-details/done.png'
-import {orderDetailsModal} from "../../models/common-models";
+import {orderDetailsModel} from "../../models/common-models";
 
 const OrderDetails = ({id}) => {
     return (
@@ -21,5 +21,5 @@ const OrderDetails = ({id}) => {
         </div>
     )
 }
-OrderDetails.propTypes = orderDetailsModal.isRequired
+OrderDetails.propTypes = orderDetailsModel.isRequired
 export default OrderDetails;

@@ -21,14 +21,21 @@ export const ingredientModel = PropTypes.shape({
 });
 
 //BurgerConstructorItem component
-export const ingredientElementModal = PropTypes.shape({
+export const ingredientElementModel = PropTypes.shape({
     image: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     _id: PropTypes.string.isRequired,
     uuid: PropTypes.string.isRequired,
-})
+});
 
-export const orderDetailsModal = PropTypes.shape({
+export const orderDetailsModel = PropTypes.shape({
     id: PropTypes.number.isRequired
-})
+});
+
+//ProtectedRoute
+export const propTypesModel = PropTypes.shape ({
+    children: PropTypes.node.isRequired,
+    exact: PropTypes.bool,
+    path: PropTypes.string.isRequired
+});

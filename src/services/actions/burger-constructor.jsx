@@ -18,12 +18,8 @@ export const CONSTRUCTOR_CLEARED = 'CONSTRUCTOR_CLEARED';
 
 export const postOrderToServer = (ids) => {
     return function (dispatch) {
-        dispatch({
-            type: ORDER_REQUEST
-        })
-        dispatch({
-            type: MODAL_OPENED
-        })
+        dispatch({type: ORDER_REQUEST});
+        dispatch({type: MODAL_OPENED});
         setData({
             url: POST_URL,
             method: 'POST',
@@ -39,23 +35,17 @@ export const postOrderToServer = (ids) => {
                 throw new Error(`Error occurred: ${res.status}`)
             })
             .then(res => {
-                    if (res && res.success) {
+                    if (res && res.success)
                         dispatch({
                             type: ORDER_SUCCESS,
                             payload: res.order.number
-                        })
-                    } else {
-                        dispatch({
-                            type: ORDER_FAILED
-                        })
-                    }
+                        });
+                    else dispatch({type: ORDER_FAILED});
                 }
             )
             .catch(err => {
-                console.log(err)
-                dispatch({
-                    type: ORDER_FAILED
-                })
+                console.log(err);
+                dispatch({type: ORDER_FAILED});
             })
     }
 }
