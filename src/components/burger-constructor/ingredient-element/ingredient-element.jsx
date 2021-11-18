@@ -1,7 +1,7 @@
 import React, {useRef} from 'react';
 import {useDispatch} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
-import {ingredientElementModal} from "../../../models/common-models";
+import {ingredientElementModel} from "../../../models/common-models";
 import {ConstructorElement, DragIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import {
     CONSTRUCTOR_MOVE_INGREDIENT,
@@ -84,6 +84,6 @@ const IngredientElement = (props) => {
     )
 }
 
-IngredientElement.propTypes = ingredientElementModal.isRequired;
+IngredientElement.propTypes = ingredientElementModel.isRequired;
 export default IngredientElement;
 

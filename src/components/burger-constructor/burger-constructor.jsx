@@ -13,16 +13,21 @@ import {useDrop} from "react-dnd";
 import {v4 as uuidv4} from 'uuid';
 import React, {useMemo} from "react";
 import IngredientElement from "./ingredient-element/ingredient-element";
+import {useHistory} from "react-router-dom";
 
 const BurgerConstructor = () => {
     //Стейты перебрались в redux
-    const {ingredients, bun, order, modalBit} = useSelector(state => ({
+    const {isAuth, ingredients, bun, order, modalBit} = useSelector(state => ({
         ingredients: state.burgerConstructor.ingredients,
         bun: state.burgerConstructor.bun,
         order: state.burgerConstructor.order,
-        modalBit: state.burgerConstructor.modalBit
+        modalBit: state.burgerConstructor.modalBit,
+        isAuth:state.userData.isAuth
     }));
+
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
     const moveIngredient = (ingredient) => {
         dispatch({
@@ -76,6 +81,7 @@ const BurgerConstructor = () => {
 
     const handleOpen = () => {
         if (!bun) return alert('Выберите булочку сначала. Без булочки не бывает бургеров.');
+        if (!isAuth) history.push('/login');
         //Булочку укажем два раза потому что булочка у нас двойная
         const ids = [...ingredients.map(item => item.data._id), bun.data._id, bun.data._id];
         //Отправляем данные на сервер

@@ -3,12 +3,15 @@ import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-com
 import {ingredientModel} from "../../../models/common-models";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
+import {Link, useLocation} from "react-router-dom";
 
 const IngredientCard = (props) => {
+    const location = useLocation();
     const {ingredients, bun} = useSelector(state => state.burgerConstructor);
     const {image, price, name, _id, type} = props.data;
     let counter = ingredients.filter((item) => item.data._id === _id).length;
     let counterUx;
+
 
     if (type === 'bun'
         && bun
@@ -29,20 +32,22 @@ const IngredientCard = (props) => {
     })
 
     return (
-        <div ref={refIngredient} draggable className={style.card} style={{opacity: opacity}} onClick={props.onOpen} id={_id}>
-            <div className={style.counter}>
-                {counterUx && <Counter count={counterUx} size="default"/>}
-            </div>
-            <img className={style.img} src={image} alt="burger"/>
-            <div className={style.price}>
+        <div ref={refIngredient} draggable className={style.card} style={{opacity: opacity}} id={_id}>
+            <Link to={{pathname: `/ingredients/${_id}`, state: {background: location}}} onClick={props.onOpen} id={_id}>
+                <div className={style.counter}>
+                    {counterUx && <Counter count={counterUx} size="default"/>}
+                </div>
+                <img className={style.img} src={image} alt="burger"/>
+                <div className={style.price}>
                 <span className="text text_type_digits-default">
                   {price}
                 </span>
-                <CurrencyIcon type="primary"/>
-            </div>
-            <p className={style.caption + 'text text_type_main-default'}>
-                {name}
-            </p>
+                    <CurrencyIcon type="primary"/>
+                </div>
+                <p className={style.caption + 'text text_type_main-default'}>
+                    {name}
+                </p>
+            </Link>
         </div>
     )
 }
