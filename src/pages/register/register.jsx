@@ -32,7 +32,7 @@ const  RegisterPage = () => {
     }
 
     return (
-        <div className="container">
+        <div className={style.container}>
             <div className={style.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Регистрация</h3>
                 <form onSubmit={handleFormSubmit} className="form" action="">

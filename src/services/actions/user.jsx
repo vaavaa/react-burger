@@ -1,4 +1,4 @@
-import {checkResponse, getUser, patchUser, sendData} from "../../utils/server";
+import {checkResponse, getUser, patchUser, setData} from "../../utils/server";
 import {apiURL} from "../../utils/config";
 
 export const USER_GET_REQUEST = 'USER_GET_REQUEST';
@@ -13,7 +13,7 @@ export const USER_CHANGE_INFO = 'USER_CHANGE_INFO';
 export const postForgotPassword = (emailValue, history) => {
     return function (dispatch) {
         dispatch({type: USER_GET_REQUEST});
-        sendData({
+        setData({
             url: `${apiURL}/password-reset`,
             method: 'POST',
             headers: {
@@ -34,6 +34,7 @@ export const postForgotPassword = (emailValue, history) => {
             )
             .catch(err => {
                 console.log(err);
+                alert(err.message);
                 dispatch({
                     type: USER_FAILED
                 })
@@ -44,7 +45,7 @@ export const postForgotPassword = (emailValue, history) => {
 export const postResetPassword = (formData, history) => {
     return function (dispatch) {
         dispatch({type: USER_GET_REQUEST});
-        sendData({
+        setData({
             url: `${apiURL}/password-reset/reset`,
             method: 'POST',
             headers: {
@@ -68,6 +69,7 @@ export const postResetPassword = (formData, history) => {
             )
             .catch(err => {
                 console.log(err);
+                alert(err.message);
                 dispatch({
                     type: USER_FAILED
                 })
@@ -78,7 +80,7 @@ export const postResetPassword = (formData, history) => {
 export const postRegister = (formData, history) => {
     return function (dispatch) {
         dispatch({type: USER_GET_REQUEST});
-        sendData({
+        setData({
             url: `${apiURL}/auth/register`,
             method: 'POST',
             headers: {
@@ -116,6 +118,7 @@ export const postRegister = (formData, history) => {
             )
             .catch(err => {
                 console.log(err);
+                alert(err.message);
                 dispatch({type: USER_FAILED});
             })
     }
@@ -126,7 +129,7 @@ export const postLogin = (formData, history, from) => {
         dispatch({
             type: USER_GET_REQUEST
         })
-        sendData({
+        setData({
             url: `${apiURL}/auth/login`,
             method: 'POST',
             headers: {
@@ -163,6 +166,7 @@ export const postLogin = (formData, history, from) => {
             )
             .catch(err => {
                 console.log(err);
+                alert(err.message);
                 dispatch({
                     type: USER_FAILED
                 })
@@ -175,7 +179,7 @@ export const postLogout = (history) => {
         dispatch({
             type: USER_GET_REQUEST
         })
-        sendData({
+        setData({
             url: `${apiURL}/auth/logout`,
             method: 'POST',
             headers: {
@@ -201,6 +205,7 @@ export const postLogout = (history) => {
             )
             .catch(err => {
                 console.log(err);
+                alert(err.message);
                 dispatch({
                     type: USER_FAILED
                 })

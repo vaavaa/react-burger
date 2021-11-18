@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from "./forgot-password.module.css";
+import styles from "./restore-password.module.css";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,7 +22,7 @@ const RestorePasswordPage = () => {
         return (<Redirect to={{pathname: '/'}}/>)
     }
     return (
-        <div className="container">
+        <div className={styles.container}>
             <div className={styles.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Восстановление пароля</h3>
                 <form onSubmit={handleSubmitForm} className="form" action="">
@@ -30,7 +30,7 @@ const RestorePasswordPage = () => {
                         <Input
                             placeholder="Укажите E-mail"
                             error={false}
-                            errorText={"Ошибка какая то"}
+                            errorText={"Ошибка"}
                             name={"email"}
                             size={"default"}
                             type={"email"}

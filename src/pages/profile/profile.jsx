@@ -5,7 +5,7 @@ import MenuProfile from "../../components/profile/menu-profile/menu-profile";
 
 const ProfilePage = () => {
     return (
-        <div className="container">
+        <div className={style.container}>
             <div className={`${style.profile_container} mt-30 pr-5 pl-5`}>
                 <MenuProfile/>
                 <div className={`${style.profile_content}`}>

@@ -26,6 +26,7 @@ export function setCookie(name, value, props = {}) {
 
 export function getCookie(name) {
     const matches = document.cookie.match(
+        /* eslint-disable-next-line */
         new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
     );
     return matches ? decodeURIComponent(matches[1]) : undefined;
@@ -49,3 +50,7 @@ export const serializeQuery = queryParams =>
         return `${acc}${encodeURIComponent(key)}=${encodeURIComponent(value)}${postfix}`;
     }, '?');
 
+
+export const getRandomBool = () => {
+    return Math.floor(Math.random() * 2) < 1;
+}

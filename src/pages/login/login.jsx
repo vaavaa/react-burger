@@ -29,11 +29,11 @@ const LoginPage = () => {
         }, history, from))
     }
     if (isAuth)
-        return (<Redirect to={{pathname: '/'}} />);
+        return (<Redirect to={{pathname: '/'}}/>);
 
 
     return (
-        <div className="container">
+        <div className={style.container}>
             <div className={style.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Вход</h3>
                 <form onSubmit={handleFormSubmit} className="form">
@@ -67,10 +67,11 @@ const LoginPage = () => {
                 </form>
                 <div className={style.login_links}>
                     <p className="text text_type_main-default text_color_inactive mb-4">Вы - новый
-                        пользователь? <Link
-                            to={"/register"} className="text text_color_accent">Зарегистрироваться</Link></p>
-                    <p className="text text_type_main-default text_color_inactive">Забыли пароль? <Link
-                        to={"/forgot-password"} className="text text_color_accent">Восстановить пароль</Link>
+                        пользователь?
+                        <Link to={"/register"} className="text text_color_accent">Зарегистрироваться
+                        </Link></p>
+                    <p className="text text_type_main-default text_color_inactive mb-4">Забыли пароль?
+                        <Link to={"/forgot-password"} className="text text_color_accent"> Восстановить пароль </Link>
                     </p>
                 </div>
             </div>
