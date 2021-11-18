@@ -35,6 +35,7 @@ export function getCookie(name) {
 export function deleteCookie(name) {
     setCookie(name, null, {expires: -1});
 }
+
 export const deserializeQuery = (query, noQuestionMark = false) => {
     const pairs = (noQuestionMark ? query : query.substring(1)).split('&');
     const array = pairs.map(elem => elem.split('='));
@@ -53,4 +54,8 @@ export const serializeQuery = queryParams =>
 
 export const getRandomBool = () => {
     return Math.floor(Math.random() * 2) < 1;
+}
+
+export const isEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
 }

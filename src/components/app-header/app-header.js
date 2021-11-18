@@ -7,8 +7,9 @@ const Header = () => {
     const {isAuth} = useSelector(state => state.userData);
     const isLogin = !!useRouteMatch('/login');
     const isProfile = !!useRouteMatch('/profile');
-    const isConstructor = !!useRouteMatch({ path: '/', exact: true});
+    const isConstructor = !!useRouteMatch({path: '/', exact: true});
     const isIngredient = !!useRouteMatch({path: '/ingredients/:id'});
+    const isOrders = !!useRouteMatch({path: '/profile/orders'});
 
     return (
         <header className={style.header}>
@@ -16,14 +17,16 @@ const Header = () => {
                 <nav className={style.header_menu}>
                     <ul className={style.header_list}>
                         <li className={style.header_link + ' pr-5 ' + ((isConstructor || isIngredient) ? style.header_link_active : '')}>
-                            <NavLink exact={true} to={"/"} >
+                            <NavLink exact={true} to={"/"}>
                                 <BurgerIcon type={(isConstructor || isIngredient) ? "primary" : "secondary"}/>
                                 <span className="ml-2">Конструктор</span>
                             </NavLink>
                         </li>
-                        <li className={"pl-5 ml-2" + style.header_link}>
-                            <ListIcon type="secondary"/>
-                            <span className="ml-2">Лента заказов</span>
+                        <li className={"pl-5 ml-2" + ((isOrders) ? style.header_link_active : '')}>
+                            <NavLink to={"/profile/orders "}>
+                                <ListIcon type={isOrders ? "primary" : "secondary"}/><span className="ml-2">Лента заказов</span>
+                            </NavLink>
+
                         </li>
                     </ul>
                 </nav>
