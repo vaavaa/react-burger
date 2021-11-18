@@ -36,7 +36,7 @@ const  RegisterPage = () => {
             <div className={style.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Регистрация</h3>
                 <form onSubmit={handleFormSubmit} className="form" action="">
-                    <div className="form__item mb-6">
+                    <div className="form_item mb-6">
                         <Input
                             placeholder="Имя"
                             error={false}
@@ -48,7 +48,7 @@ const  RegisterPage = () => {
                             value={formData.name}
                         />
                     </div>
-                    <div className="form__item mb-6">
+                    <div className="form_item mb-6">
                         <Input
                             placeholder="E-mail"
                             error={false}

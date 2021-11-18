@@ -6,27 +6,27 @@ import {useSelector} from "react-redux";
 const Header = () => {
     const {isAuth} = useSelector(state => state.userData);
     const isLogin = !!useRouteMatch('/login');
-    const isProfile = !!useRouteMatch('/profile');
+    const isProfile = !!useRouteMatch('/user-profile');
     const isConstructor = !!useRouteMatch({path: '/', exact: true});
     const isIngredient = !!useRouteMatch({path: '/ingredients/:id'});
     const isOrders = !!useRouteMatch({path: '/profile/orders'});
 
+    console.log (isConstructor);
     return (
         <header className={style.header}>
             <div className={style.container + ' pt-4 pb-4 ' + style.header_content}>
                 <nav className={style.header_menu}>
                     <ul className={style.header_list}>
-                        <li className={style.header_link + ' pr-5 ' + ((isConstructor || isIngredient) ? style.header_link_active : '')}>
-                            <NavLink exact={true} to={"/"}>
+                        <li>
+                            <NavLink exact={true} to={"/"} className={style.header_link + ' pr-5 ' + ((isConstructor || isIngredient) ? style.header_link_active : '')}>
                                 <BurgerIcon type={(isConstructor || isIngredient) ? "primary" : "secondary"}/>
                                 <span className="ml-2">Конструктор</span>
                             </NavLink>
                         </li>
-                        <li className={"pl-5 ml-2" + ((isOrders) ? style.header_link_active : '')}>
-                            <NavLink to={"/profile/orders "}>
+                        <li>
+                            <NavLink to={"/profile/orders"} className={style.header_link + ' pr-5 ' + ((isOrders) ? style.header_link_active : '')}>
                                 <ListIcon type={isOrders ? "primary" : "secondary"}/><span className="ml-2">Лента заказов</span>
                             </NavLink>
-
                         </li>
                     </ul>
                 </nav>

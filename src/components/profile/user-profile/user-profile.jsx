@@ -15,7 +15,7 @@ const UserProfile = () => {
         password: ""
     })
 
-    const [isChangeInput, setIsChangeInput] = useState(false);
+    const [isChangedInput, setChangedInput] = useState(false);
 
     useEffect(() => {
         dispatch(getUserInfo());
@@ -27,22 +27,20 @@ const UserProfile = () => {
             email: user.email,
             name: user.name
         })
-    }, [user, formData])
+    }, [user])
 
     const nameCustomInput = useSupportInput();
     const passCustomInput = useSupportInput();
 
     const handleOnChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        })
-        setIsChangeInput(true);
+        e.preventDefault();
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setChangedInput(true);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(postUserInfo(formData));
-        setIsChangeInput(false);
+        setChangedInput(false);
     }
 
     const handleCancel = (e) => {
@@ -52,35 +50,32 @@ const UserProfile = () => {
             name: user.name,
             password: ""
         })
-        setIsChangeInput(false);
+        setChangedInput(false);
     }
 
     return (
         <form onSubmit={handleSubmit} className={`${style.form}`}>
-            <div className="form__item mb-6">
+            <div className="mb-6">
                 <Input
                     placeholder="Имя"
-                    error={false}
                     name={"name"}
                     onChange={handleOnChange}
-                    errorText={'Ошибка какая то'}
+                    errorText={'Ошибка'}
                     size={"default"}
                     type={"text"}
                     icon={"EditIcon"}
                     onBlur={passCustomInput.handleBlur}
                     onIconClick={passCustomInput.handleIconClick}
-                    disabled={true}
                     ref={passCustomInput.ref}
                     value={formData.name}
                 />
             </div>
-            <div className="form__item mb-6">
+            <div className="mb-6">
                 <EmailInput onChange={handleOnChange} value={formData.email} name={'email'}/>
             </div>
-            <div className="form__item mb-6">
+            <div className="mb-6">
                 <Input
                     placeholder="Пароль"
-                    error={false}
                     name={"password"}
                     onChange={handleOnChange}
                     errorText={'Ошибка какая то'}
@@ -89,12 +84,11 @@ const UserProfile = () => {
                     icon={"EditIcon"}
                     onBlur={nameCustomInput.handleBlur}
                     onIconClick={nameCustomInput.handleIconClick}
-                    disabled={true}
                     ref={nameCustomInput.ref}
                     value={formData.password}
                 />
             </div>
-            {isChangeInput && (
+            {isChangedInput && (
                 <div className={`${style.form_buttons} mb-20`}>
                     <Button type={"primary"} size="medium">Сохранить</Button>
                     <Button type={"secondary"} size="medium" onClick={handleCancel}>Отмена</Button>

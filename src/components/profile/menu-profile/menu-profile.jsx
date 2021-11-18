@@ -14,7 +14,7 @@ const MenuProfile = () => {
         <div className={style.profile_cont}>
             <ul className={`${style.profile_menu} mr-15`}>
                 <li className={`${style.profile_menu_item} text text_type_main-medium text_color_inactive`}>
-                    <NavLink to={`/profile`} activeClassName={"text_color_primary"}>Профиль</NavLink>
+                    <NavLink to={`/user-profile`} activeClassName={"text_color_primary"}>Профиль</NavLink>
                 </li>
                 <li className={`${style.profile_menu_item} text text_type_main-medium text_color_inactive`}>
                     <NavLink to={`/profile/orders`} activeClassName={"text_color_primary"}>История заказов</NavLink>

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import style from './ingredient-detail.module.css';
-import {ingredientDetailsModel} from "../../../models/common-models";
+// import {ingredientDetailsModel} from "../../../models/common-models";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {getIngredientsFromServer} from "../../../services/actions/burger-ingredients";

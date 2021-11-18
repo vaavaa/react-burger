@@ -151,7 +151,7 @@ const BurgerIngredients = () => {
                     {modalBit &&
                     ingredientDetails &&
                     (<Modal onClose={handleClose} caption={'Детали ингредиента'}>
-                        <IngredientDetails data={ingredientDetails}/>
+                        <IngredientDetails />
                     </Modal>)
                     }
                 </section>)}

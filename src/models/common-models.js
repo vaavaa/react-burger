@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 
 
 //IngredientDetails component
-export const ingredientDetailsModel = PropTypes.shape({
-    image_large: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-});
+// export const ingredientDetailsModel = PropTypes.shape({
+//     image_large: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     calories: PropTypes.number.isRequired,
+//     carbohydrates: PropTypes.number.isRequired,
+//     fat: PropTypes.number.isRequired,
+//     proteins: PropTypes.number.isRequired,
+// });
 
 //IngredientCard component
 export const ingredientModel = PropTypes.shape({
