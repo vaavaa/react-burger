@@ -1,6 +1,6 @@
 import style from './app.module.css';
 import Header from '../app-header/app-header';
-import React from "react";
+import React, {useEffect} from "react";
 import {Route, Switch, useHistory, useLocation} from "react-router-dom";
 import ProtectedRoute from "../protected-route/protected-route";
 import {
@@ -13,8 +13,19 @@ import {
     RestorePasswordPage
 } from "../../pages";
 import IngredientDetails from "../burger-ingredients/ingredient-details/ingredient-details";
+import {getIngredientsFromServer} from "../../services/actions/burger-ingredients";
+import {useDispatch, useSelector} from "react-redux";
 
 const App = () => {
+
+    const dispatch = useDispatch();
+    const {ingredients} = useSelector(state => state.burgerIngredients)
+    useEffect(() => {
+        if (ingredients.length <= 0) {
+            dispatch(getIngredientsFromServer())
+        }
+    }, [dispatch, ingredients.length]);
+
     const history = useHistory();
     const location = useLocation();
     //Любой ввод пути, в строке браузера : переход по ссылке

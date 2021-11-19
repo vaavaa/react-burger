@@ -27,10 +27,6 @@ const BurgerIngredients = () => {
     const refMains = useRef(null)
     const refContainer = useRef(null)
 
-    useEffect(() => {
-        dispatch(getIngredientsFromServer());
-    }, [dispatch]);
-
     //Что бы не перегружать разметку выборкой, здесь фильтруем
     const dataBuns = ingredients.filter((buns) => buns.type === "bun");
     const dataSauces = ingredients.filter((sauce) => sauce.type === "sauce");

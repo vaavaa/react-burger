@@ -11,27 +11,31 @@ const Header = () => {
     const isIngredient = !!useRouteMatch({path: '/ingredients/:id'});
     const isOrders = !!useRouteMatch({path: '/profile/orders'});
 
-    console.log (isConstructor);
+    console.log(isConstructor);
     return (
         <header className={style.header}>
             <div className={style.container + ' pt-4 pb-4 ' + style.header_content}>
                 <nav className={style.header_menu}>
                     <ul className={style.header_list}>
                         <li>
-                            <NavLink exact={true} to={"/"} className={style.header_link + ' pr-5 ' + ((isConstructor || isIngredient) ? style.header_link_active : '')}>
+                            <NavLink exact={true} to={"/"}
+                                     className={style.header_link + ' pr-5 ' + ((isConstructor || isIngredient) ? style.header_link_active : '')}>
                                 <BurgerIcon type={(isConstructor || isIngredient) ? "primary" : "secondary"}/>
                                 <span className="ml-2">Конструктор</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={"/profile/orders"} className={style.header_link + ' pr-5 ' + ((isOrders) ? style.header_link_active : '')}>
+                            <NavLink to={"/profile/orders"}
+                                     className={style.header_link + ' pr-5 ' + ((isOrders) ? style.header_link_active : '')}>
                                 <ListIcon type={isOrders ? "primary" : "secondary"}/><span className="ml-2">Лента заказов</span>
                             </NavLink>
                         </li>
                     </ul>
                 </nav>
                 <div className={style.header_logo}>
-                    <Logo/>
+                    <NavLink exact={true} to={"/"}>
+                        <Logo/>
+                    </NavLink>
                 </div>
                 <div className={style.header_profile}>
                     {isAuth ? (

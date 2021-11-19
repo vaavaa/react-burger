@@ -1,28 +1,26 @@
-import React, {useEffect} from 'react';
+import React, {useMemo} from 'react';
 import style from './ingredient-detail.module.css';
 // import {ingredientDetailsModel} from "../../../models/common-models";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
-import {getIngredientsFromServer} from "../../../services/actions/burger-ingredients";
 import {isEmpty} from "../../../utils/utils";
 
 const IngredientDetails = () => {
-    const dispatch = useDispatch();
-    const {ingredients, ingredientDetails} = useSelector(state => state.burgerIngredients)
+    const {ingredients, ingredientDetails} = useSelector(state => state.burgerIngredients);
     const {id} = useParams();
 
-    useEffect(() => {
-        if (ingredients.length <= 0) {
-            dispatch(getIngredientsFromServer())
-        }
-    }, [dispatch, ingredients.length]);
+    console.log(ingredientDetails);
+    console.log(ingredients);
 
-    let ingredient;
-    if (!isEmpty(ingredientDetails)) {
-        ingredient = ingredientDetails;
-    } else {
-        ingredient = ingredients.find((item) => item._id === id);
-    }
+    let ingredient = useMemo(() => {
+        let returnValue;
+        if (!isEmpty(ingredientDetails)) {
+            returnValue = ingredientDetails;
+        } else {
+            returnValue = ingredients.find((item) => item._id === id);
+        }
+        return returnValue
+    }, [ingredientDetails, ingredients, id]);
 
     return (
         <section className={style.body}>
@@ -31,11 +29,13 @@ const IngredientDetails = () => {
             <div className={style.composition + ' mt-8 '}>
                 <div className={style.items + ' mr-5 '}>
                     <span className="text text_color_inactive text_type_main-default">Калории,ккал</span>
-                    <span className="text text_color_inactive text_type_digits-default mt-2">{ingredient.calories}</span>
+                    <span
+                        className="text text_color_inactive text_type_digits-default mt-2">{ingredient.calories}</span>
                 </div>
                 <div className={style.items + ' mr-5 '}>
                     <span className="text text_color_inactive text_type_main-default">Белки, г</span>
-                    <span className="text text_color_inactive text_type_digits-default mt-2">{ingredient.proteins}</span>
+                    <span
+                        className="text text_color_inactive text_type_digits-default mt-2">{ingredient.proteins}</span>
                 </div>
                 <div className={style.items + ' mr-5 '}>
                     <span className="text text_color_inactive text_type_main-default">Жиры, г</span>
@@ -43,7 +43,8 @@ const IngredientDetails = () => {
                 </div>
                 <div className={style.items + ' mr-5'}>
                     <span className="text text_color_inactive text_type_main-default">Углеводы, г</span>
-                    <span className="text text_color_inactive text_type_digits-default mt-2">{ingredient.carbohydrates}</span>
+                    <span
+                        className="text text_color_inactive text_type_digits-default mt-2">{ingredient.carbohydrates}</span>
                 </div>
             </div>
         </section>
@@ -51,4 +52,4 @@ const IngredientDetails = () => {
 }
 
 // IngredientDetails.propTypes = ingredientDetailsModel.isRequired;
-export default  IngredientDetails;
+export default IngredientDetails;
