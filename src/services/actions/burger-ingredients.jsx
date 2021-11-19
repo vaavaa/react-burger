@@ -1,5 +1,5 @@
 import {getData} from "../../utils/server";
-import {API_URL} from "../../utils/config";
+import {apiURL} from "../../utils/config";
 
 export const INGREDIENTS_REQUEST = 'INGREDIENTS_REQUEST';
 export const INGREDIENTS_SUCCESS = 'INGREDIENTS_SUCCESS';
@@ -13,7 +13,7 @@ export const getIngredientsFromServer = () => {
         dispatch({
             type: INGREDIENTS_REQUEST
         })
-        getData(API_URL)
+        getData(apiURL+'/ingredients')
             .then(res => {
                 if (res.ok) {
                     return res.json();

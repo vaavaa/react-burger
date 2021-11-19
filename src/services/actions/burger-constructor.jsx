@@ -1,4 +1,4 @@
-import {POST_URL} from "../../utils/config";
+import {apiURL} from "../../utils/config";
 import {setData} from "../../utils/server";
 
 
@@ -21,7 +21,7 @@ export const postOrderToServer = (ids) => {
         dispatch({type: ORDER_REQUEST});
         dispatch({type: MODAL_OPENED});
         setData({
-            url: POST_URL,
+            url: apiURL + '/orders',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
