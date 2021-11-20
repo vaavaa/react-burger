@@ -1,24 +1,16 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useRef} from 'react';
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components'
 import style from './burger-ingredients.module.css'
 import IngredientCard from "./ingredient-card/ingredient-card";
 import {bunsLimit, sauceLimit} from "../../utils/config";
-import Modal from "../modal/modal";
-import IngredientDetails from "./ingredient-details/ingredient-details";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    getIngredientsFromServer,
-    INGREDIENT_ACTIVATE_TAB,
-    INGREDIENT_MODAL,
-    INGREDIENT_MODAL_REMOVE
-} from "../../services/actions/burger-ingredients";
+import {INGREDIENT_ACTIVATE_TAB, INGREDIENT_MODAL} from "../../services/actions/burger-ingredients";
 
 
 const BurgerIngredients = () => {
     //Все стейты в redux
     const {
-        ingredients, ingredientsRequest, ingredientsError,
-        ingredientDetails, currentTab, modalBit
+        ingredients, ingredientsRequest, ingredientsError, currentTab
     } = useSelector(state => state.burgerIngredients)
 
     const dispatch = useDispatch();
@@ -69,17 +61,9 @@ const BurgerIngredients = () => {
         })
     }
 
-    const handleClose = () => {
-        dispatch({
-            type: INGREDIENT_MODAL_REMOVE
-        })
-    }
     const handleOpen = (e) => {
-        const target = e.currentTarget;
-        const id = target.getAttribute('id');
         dispatch({
             type: INGREDIENT_MODAL,
-            item: ingredients.find((item) => item._id === id)
         })
     }
 
@@ -144,12 +128,6 @@ const BurgerIngredients = () => {
                             </ul>
                         </div>
                     </div>
-                    {modalBit &&
-                    ingredientDetails &&
-                    (<Modal onClose={handleClose} caption={'Детали ингредиента'}>
-                        <IngredientDetails />
-                    </Modal>)
-                    }
                 </section>)}
         </>
     );

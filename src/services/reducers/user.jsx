@@ -5,7 +5,8 @@ import {
     USER_SET_AUTH,
     USER_SUCCESS,
     USER_DELETE_AUTH,
-    USER_CHANGE_INFO
+    USER_CHANGE_INFO,
+    USER_SET_FORGOT_DIRECTION
 } from "../actions/user";
 import {deleteCookie, getCookie, setCookie} from "../../utils/utils";
 
@@ -17,11 +18,18 @@ const initialState = {
         email: ""
     },
     isAuth: Boolean(getCookie('token')),
-    wasOnForgotPass: false
+    fromForgotPage: false
 }
 
 export const userReducer = (state = initialState, action) => {
     switch (action.type) {
+        case USER_SET_FORGOT_DIRECTION:
+            console.log('МЫ тут');
+            console.debug()
+            return {
+                ...state,
+                fromForgotPage: action.wayfrom
+            }
         case USER_FAILED:
             return {
                 ...state,

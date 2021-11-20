@@ -4,7 +4,8 @@ import {
     INGREDIENT_MODAL_REMOVE,
     INGREDIENTS_FAILED,
     INGREDIENTS_REQUEST,
-    INGREDIENTS_SUCCESS
+    INGREDIENTS_SUCCESS,
+    INGREDIENTS_DETAILS,
 } from "../actions/burger-ingredients";
 
 const initialState = {
@@ -24,6 +25,12 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
                 ingredientsRequest: true
             };
         }
+        case INGREDIENTS_DETAILS : {
+            return {
+                ...state,
+                ingredientDetails: action.ingredient
+            };
+        }
         case INGREDIENTS_SUCCESS: {
             return {...state, ingredientsFailed: false, ingredients: action.ingredients, ingredientsRequest: false};
         }
@@ -33,14 +40,12 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
         case INGREDIENT_MODAL: {
             return {
                 ...state,
-                ingredientDetails: action.item,
                 modalBit: true
             }
         }
         case INGREDIENT_MODAL_REMOVE: {
             return {
                 ...state,
-                ingredientDetails: {},
                 modalBit: false
             }
         }

@@ -11,7 +11,6 @@ const Header = () => {
     const isIngredient = !!useRouteMatch({path: '/ingredients/:id'});
     const isOrders = !!useRouteMatch({path: '/profile/orders'});
 
-    console.log(isConstructor);
     return (
         <header className={style.header}>
             <div className={style.container + ' pt-4 pb-4 ' + style.header_content}>

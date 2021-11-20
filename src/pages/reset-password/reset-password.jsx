@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import style from './reset-password.module.css';
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
@@ -7,15 +7,20 @@ import {useDispatch, useSelector} from "react-redux";
 
 const ResetPasswordPage = () => {
     const history = useHistory();
-
-    const {wasOnForgotPass, isAuth} = useSelector(state => state.userData);
-
     const dispatch = useDispatch();
+
+    const {isAuth} = useSelector(state => state.userData);
 
     const [formData, setFormData] = useState({
         password: "",
         token: ""
     })
+
+    useEffect(() => {
+        if (document.referrer.length === 0) {
+            history.push('/forgot-password');
+        }
+    }, [history])
 
     const handleChange = (e) => {
         setFormData({
@@ -26,42 +31,37 @@ const ResetPasswordPage = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         dispatch(postResetPassword(formData, history));
-
     }
 
     if (isAuth) {
         return (<Redirect to={{pathname: '/'}}/>)
     }
 
-    if (!wasOnForgotPass) {
-        return (<Redirect to={'/forgot-password'}/>)
-    }
-
     return (
-        <div className="container">
+        <div className={style.container}>
             <div className={style.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Восстановление пароля</h3>
                 <form onSubmit={handleFormSubmit} className="form" action="">
-                    <div className="form__item mb-6">
+                    <div className="mb-6">
                         <Input
                             type={"password"}
                             icon={"ShowIcon"}
                             size={"default"}
                             placeholder="Введите новый пароль"
                             error={false}
-                            errorText={"Ошибка какая то"}
+                            errorText={"Ошибка"}
                             name={"password"}
                             onChange={handleChange}
                             value={formData.password}
                         />
                     </div>
-                    <div className="form__item mb-6">
+                    <div className="mb-6">
                         <Input
                             type={"text"}
                             size={"default"}
                             placeholder="Введите код из письма"
                             error={false}
-                            errorText={"Ошибка какая то"}
+                            errorText={"Ошибка"}
                             name={"token"}
                             onChange={handleChange}
                             value={formData.token}
@@ -73,7 +73,7 @@ const ResetPasswordPage = () => {
                 </form>
                 <div className={style.login_links}>
                     <p className="text text_type_main-default text_color_inactive mb-4">
-                        Уже зарегистрированы? <Link to={`/login`} className="text text_color_accent">Войти</Link>
+                        Уже зарегистрированы? <Link to={`/login`} className={`${style.link} text text_color_accent`}>Войти</Link>
                     </p>
                 </div>
             </div>

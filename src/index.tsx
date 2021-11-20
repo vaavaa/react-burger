@@ -12,7 +12,7 @@ ReactDOM.render(
     <React.StrictMode>
         <DndProvider backend={HTML5Backend}>
             <Provider store={stores}>
-                <Router>
+                <Router forceRefresh={true}>
                     <App/>
                 </Router>
             </Provider>

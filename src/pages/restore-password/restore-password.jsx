@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./restore-password.module.css";
 import {Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
 import {Link, Redirect, useHistory} from "react-router-dom";
@@ -8,7 +8,7 @@ import {postForgotPassword} from "../../services/actions/user";
 const RestorePasswordPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {isAuth} = useSelector(state => state.userData);
+    const {isAuth, fromForgotPage} = useSelector(state => state.userData);
 
     const [email, setEmail] = useState("");
     const handleChange = (e) => {
@@ -16,8 +16,13 @@ const RestorePasswordPage = () => {
     }
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        dispatch(postForgotPassword(email, history));
+        dispatch(postForgotPassword(email));
     }
+
+    useEffect(() => {
+        if (fromForgotPage) history.push('/reset-password');
+    }, [fromForgotPage, history])
+
     if (isAuth) {
         return (<Redirect to={{pathname: '/'}}/>)
     }
