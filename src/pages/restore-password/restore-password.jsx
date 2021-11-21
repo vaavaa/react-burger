@@ -31,7 +31,7 @@ const RestorePasswordPage = () => {
             <div className={styles.login_container}>
                 <h3 className="text text_type_main-medium mb-6">Восстановление пароля</h3>
                 <form onSubmit={handleSubmitForm} className="form" action="">
-                    <div className="form__item mb-6">
+                    <div className="mb-6">
                         <Input
                             placeholder="Укажите E-mail"
                             error={false}

@@ -1,16 +1,17 @@
 import React, {useMemo} from 'react';
 import style from './ingredient-detail.module.css';
-// import {ingredientDetailsModel} from "../../../models/common-models";
 import {useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
+import {getLastParam} from "../../../utils/utils";
 
 const IngredientDetails = () => {
     const {ingredients} = useSelector(state => state.burgerIngredients);
-    const {id} = useParams();
+    const id = getLastParam(window.location.pathname);
+
+    // let ingredient = ingredients.find((item) => item._id === id);
 
     let ingredient = useMemo(() => {
         return ingredients.find((item) => item._id === id);
-    })
+    }, [ingredients, id]);
 
     return (
         <>{ingredient && (
