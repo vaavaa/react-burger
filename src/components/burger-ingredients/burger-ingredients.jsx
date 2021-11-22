@@ -4,7 +4,11 @@ import style from './burger-ingredients.module.css'
 import IngredientCard from "./ingredient-card/ingredient-card";
 import {bunsLimit, sauceLimit} from "../../utils/config";
 import {useDispatch, useSelector} from "react-redux";
-import {INGREDIENT_ACTIVATE_TAB, INGREDIENT_MODAL} from "../../services/actions/burger-ingredients";
+import {
+    INGREDIENT_ACTIVATE_TAB,
+    INGREDIENT_MODAL,
+    INGREDIENTS_DETAILS
+} from "../../services/actions/burger-ingredients";
 
 
 const BurgerIngredients = () => {
@@ -64,6 +68,10 @@ const BurgerIngredients = () => {
     const handleOpen = (e) => {
         dispatch({
             type: INGREDIENT_MODAL,
+        })
+        dispatch({
+            type: INGREDIENTS_DETAILS,
+            ingredientPopUp:true
         })
     }
 

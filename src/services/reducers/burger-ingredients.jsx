@@ -7,14 +7,16 @@ import {
     INGREDIENTS_SUCCESS,
     INGREDIENTS_DETAILS,
 } from "../actions/burger-ingredients";
+import {deleteCookie, setCookie} from "../../utils/utils";
 
 const initialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
-    ingredientDetails: {},
+    ingredientPopUp: false,
     currentTab: "bun",
     modalBit: false
+
 };
 
 export const burgerIngredientsReducer = (state = initialState, action) => {
@@ -26,9 +28,10 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
             };
         }
         case INGREDIENTS_DETAILS : {
+            setCookie('in_popup', action.ingredient, );
             return {
                 ...state,
-                ingredientDetails: action.ingredient
+                ingredientPopUp: action.ingredient
             };
         }
         case INGREDIENTS_SUCCESS: {
@@ -44,6 +47,7 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
             }
         }
         case INGREDIENT_MODAL_REMOVE: {
+            deleteCookie('in_popup');
             return {
                 ...state,
                 modalBit: false

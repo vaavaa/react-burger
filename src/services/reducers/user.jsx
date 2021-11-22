@@ -24,8 +24,6 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_SET_FORGOT_DIRECTION:
-            console.log('МЫ тут');
-            console.debug()
             return {
                 ...state,
                 fromForgotPage: action.wayfrom

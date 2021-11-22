@@ -1,5 +1,6 @@
 import {getData} from "../../utils/server";
 import {apiURL} from "../../utils/config";
+import {deleteCookie} from "../../utils/utils";
 
 export const INGREDIENTS_REQUEST = 'INGREDIENTS_REQUEST';
 export const INGREDIENTS_SUCCESS = 'INGREDIENTS_SUCCESS';
@@ -36,4 +37,7 @@ export const getIngredientsFromServer = () => {
                 dispatch({type: INGREDIENTS_FAILED})
             })
     }
+}
+export const deletePopupCookie = () => {
+    deleteCookie("in_popup");
 }
