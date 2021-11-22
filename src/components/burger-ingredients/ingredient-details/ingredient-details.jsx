@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {getLastParam} from "../../../utils/utils";
 
 const IngredientDetails = () => {
-    const {ingredients} = useSelector(state => state.burgerIngredients);
+    const {ingredients, modalBit} = useSelector(state => state.burgerIngredients);
     const id = getLastParam(window.location.pathname);
 
     // let ingredient = ingredients.find((item) => item._id === id);
@@ -15,7 +15,7 @@ const IngredientDetails = () => {
 
     return (
         <>{ingredient && (
-            <section className={style.body}>
+            <section className={modalBit? style.body : style.body + ' ' + style.container  }>
                 <img src={ingredient.image_large} alt=""/>
                 <h5 className="text text_type_main-medium mt-4">{ingredient.name}</h5>
                 <div className={style.composition + ' mt-8 '}>

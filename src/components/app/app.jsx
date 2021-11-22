@@ -41,15 +41,6 @@ const App = () => {
         history.push("/");
     }
 
-    const checkModalBit = () => {
-        if (!modalBit) {
-            dispatch({
-                type: INGREDIENT_MODAL
-            });
-        }
-        return modalBit;
-    }
-
 
     //Любой ввод пути, в строке браузера : переход по ссылке
     const background = history.action === 'PUSH' && location.state && location.state.background;
@@ -75,7 +66,7 @@ const App = () => {
                             <ResetPasswordPage/>
                         </Route>
                         <Route path={"/ingredients/:id"} exact={true}>
-                            {checkModalBit}
+                            <IngredientDetails/>
                         </Route>
                         <ProtectedRoute path={"/user-profile"} exact={true}>
                             <ProfilePage/>
