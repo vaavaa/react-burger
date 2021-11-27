@@ -71,7 +71,6 @@ const BurgerIngredients = () => {
         })
         dispatch({
             type: INGREDIENTS_DETAILS,
-            ingredientPopUp:true
         })
     }
 

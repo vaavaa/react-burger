@@ -1,12 +1,18 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import style from './ingredient-detail.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {getLastParam} from "../../../utils/utils";
+import {useSelector} from "react-redux";
+import {getCookie, getLastParam} from "../../../utils/utils";
 
 
 const IngredientDetails = () => {
     const {ingredients, modalBit} = useSelector(state => state.burgerIngredients);
     const id = getLastParam(window.location.pathname);
+    const [modalCookie, setModalCookie] = useState(modalBit);
+
+    useEffect(() => {
+        let modalCookieStore = getCookie('modal_bit');
+        setModalCookie(modalCookieStore);
+    }, []);
 
     let ingredient = useMemo(() => {
         return ingredients.find((item) => item._id === id);
@@ -14,7 +20,7 @@ const IngredientDetails = () => {
 
     return (
         <>{ingredient && (
-            <section className={modalBit ? style.body : style.body + ' ' + style.container}>
+            <section className={modalCookie ? style.body : style.body + ' ' + style.container}>
                 <img src={ingredient.image_large} alt=""/>
                 <h5 className="text text_type_main-medium mt-4">{ingredient.name}</h5>
                 <div className={style.composition + ' mt-8 '}>

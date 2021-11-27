@@ -13,10 +13,8 @@ const initialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
-    ingredientPopUp: false,
     currentTab: "bun",
     modalBit: false
-
 };
 
 export const burgerIngredientsReducer = (state = initialState, action) => {
@@ -28,10 +26,8 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
             };
         }
         case INGREDIENTS_DETAILS : {
-            setCookie('in_popup', action.ingredient, );
             return {
                 ...state,
-                ingredientPopUp: action.ingredient
             };
         }
         case INGREDIENTS_SUCCESS: {
@@ -41,13 +37,14 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
             return {...state, ingredientsFailed: true, ingredientsRequest: false};
         }
         case INGREDIENT_MODAL: {
+            setCookie('modal_bit', true);
             return {
                 ...state,
                 modalBit: true
             }
         }
         case INGREDIENT_MODAL_REMOVE: {
-            deleteCookie('in_popup');
+            deleteCookie('modal_bit');
             return {
                 ...state,
                 modalBit: false

@@ -37,7 +37,7 @@ const IngredientCard = (props) => {
 
     return (
         <Link ref={refIngredient} draggable className={style.link}
-              to={{pathname: `/ingredients/${_id}`, state: {background: location}}}
+              to={{pathname: `/ingredients/${_id}`, state: {background: location, ids: _id}}}
               onClick={props.onOpen} style={{opacity: opacity}} id={_id}>
             <div className={style.card}>
                 <div className={style.counter}>
