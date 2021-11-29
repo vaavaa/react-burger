@@ -8,3 +8,4 @@ export const rootReducer = combineReducers({
     burgerIngredients: burgerIngredientsReducer,
     burgerConstructor: constructorReducer
 });
+

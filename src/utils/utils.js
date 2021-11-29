@@ -59,3 +59,12 @@ export const getRandomBool = () => {
 export const isEmpty = (obj) => {
     return Object.keys(obj).length === 0;
 }
+
+export const getLastParam = (url) => {
+    //example
+    ///ingredients/60d3b41abdacab0026a733c6
+    let parms = url.split("/");
+    return parms[parms.length-1];
+}
+
+

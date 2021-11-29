@@ -4,14 +4,15 @@ import {
     INGREDIENT_MODAL_REMOVE,
     INGREDIENTS_FAILED,
     INGREDIENTS_REQUEST,
-    INGREDIENTS_SUCCESS
+    INGREDIENTS_SUCCESS,
+    INGREDIENTS_DETAILS,
 } from "../actions/burger-ingredients";
+import {deleteCookie, setCookie} from "../../utils/utils";
 
 const initialState = {
     ingredients: [],
     ingredientsRequest: false,
     ingredientsFailed: false,
-    ingredientDetails: {},
     currentTab: "bun",
     modalBit: false
 };
@@ -24,6 +25,11 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
                 ingredientsRequest: true
             };
         }
+        case INGREDIENTS_DETAILS : {
+            return {
+                ...state,
+            };
+        }
         case INGREDIENTS_SUCCESS: {
             return {...state, ingredientsFailed: false, ingredients: action.ingredients, ingredientsRequest: false};
         }
@@ -31,16 +37,16 @@ export const burgerIngredientsReducer = (state = initialState, action) => {
             return {...state, ingredientsFailed: true, ingredientsRequest: false};
         }
         case INGREDIENT_MODAL: {
+            setCookie('modal_bit', true);
             return {
                 ...state,
-                ingredientDetails: action.item,
                 modalBit: true
             }
         }
         case INGREDIENT_MODAL_REMOVE: {
+            deleteCookie('modal_bit');
             return {
                 ...state,
-                ingredientDetails: {},
                 modalBit: false
             }
         }

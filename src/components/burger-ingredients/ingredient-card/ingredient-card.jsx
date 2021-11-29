@@ -4,12 +4,16 @@ import {ingredientModel} from "../../../models/common-models";
 import {useSelector} from "react-redux";
 import {useDrag} from "react-dnd";
 import {Link, useLocation} from "react-router-dom";
+import {useMemo} from "react";
 
 const IngredientCard = (props) => {
     const location = useLocation();
     const {ingredients, bun} = useSelector(state => state.burgerConstructor);
     const {image, price, name, _id, type} = props.data;
-    let counter = ingredients.filter((item) => item.data._id === _id).length;
+
+    let counter = useMemo(() => {
+        return ingredients.filter((item) => item.data._id === _id).length;
+    }, [ingredients, _id])
     let counterUx;
 
 
@@ -32,8 +36,10 @@ const IngredientCard = (props) => {
     })
 
     return (
-        <div ref={refIngredient} draggable className={style.card} style={{opacity: opacity}} id={_id}>
-            <Link to={{pathname: `/ingredients/${_id}`, state: {background: location}}} onClick={props.onOpen} id={_id}>
+        <Link ref={refIngredient} draggable className={style.link}
+              to={{pathname: `/ingredients/${_id}`, state: {background: location, ids: _id}}}
+              onClick={props.onOpen} style={{opacity: opacity}} id={_id}>
+            <div className={style.card}>
                 <div className={style.counter}>
                     {counterUx && <Counter count={counterUx} size="default"/>}
                 </div>
@@ -47,8 +53,8 @@ const IngredientCard = (props) => {
                 <p className={style.caption + 'text text_type_main-default'}>
                     {name}
                 </p>
-            </Link>
-        </div>
+            </div>
+        </Link>
     )
 }
 

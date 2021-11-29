@@ -45,6 +45,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    color: #8585AD;
 }
 
 .header_link_active{

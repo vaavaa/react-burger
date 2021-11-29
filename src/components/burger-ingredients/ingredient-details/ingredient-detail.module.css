@@ -1,3 +1,4 @@
+
 .body {
     display: flex;
     justify-content: center;
@@ -19,4 +20,8 @@
 
 .items:last-child {
     margin-right: 0;
+}
+
+.container {
+    composes: container from  "../../../css/main.css";
 }

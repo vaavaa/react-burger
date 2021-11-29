@@ -8,9 +8,10 @@ export const USER_GET_INFO = 'USER_GET_INFO';
 export const USER_SET_AUTH = 'USER_SET_AUTH';
 export const USER_DELETE_AUTH = 'USER_DELETE_AUTH';
 export const USER_CHANGE_INFO = 'USER_CHANGE_INFO';
+export const USER_SET_FORGOT_DIRECTION = 'USER_SET_FORGOT_DIRECTION';
 
 
-export const postForgotPassword = (emailValue, history) => {
+export const postForgotPassword = (emailValue) => {
     return function (dispatch) {
         dispatch({type: USER_GET_REQUEST});
         setData({
@@ -24,7 +25,7 @@ export const postForgotPassword = (emailValue, history) => {
             .then(res => checkResponse(res))
             .then(res => {
                     if (res && res.success) {
-                        history.push('/reset-password');
+                        dispatch({type: USER_SET_FORGOT_DIRECTION, wayfrom: true});
                     } else {
                         dispatch({
                             type: USER_FAILED
@@ -227,7 +228,7 @@ export const getUserInfo = () => {
                                 user: res.user
                             }
                         });
-                    else dispatch({ type: USER_FAILED });
+                    else dispatch({type: USER_FAILED});
 
                 }
             )
